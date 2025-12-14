@@ -1,0 +1,68 @@
+<div style="display: flex; border-right: 1px solid #dedede">
+  <div style="display: flex; flex-direction: column; align-items: flex-end;">
+    <div id="vending-items-list" class="container" style="max-width: 260px; margin: 0; padding: 0;">
+      <div class="row justify-content-center g-3">
+        <div class="col-4" *ngFor="let e of entries">
+          <div
+            class="text-center"
+            (click)="selectProduct(e.id); change = 0; errorMessage = ''">
+            <p>{{ e.product.name }}<span title="quantity" style="color: grey; font-style: italic;">({{ e.quantity }})</span></p>
+            <span class="border" title="id" style="display: block;">{{ e.id }}</span>
+            <span title="price">{{ e.price | centsToEuro }}</span>
+            <p
+              *ngIf="e.quantity === 0"
+              style="color: #ff6b6b;">!OUT OF STOCK!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; margin-top: 12px;">
+      <span
+        class="border d-flex justify-content-center align-items-center"
+        style="min-width: 50px;">{{ selectedProductId }}</span>
+      <button
+        class="btn btn-light"
+        id="buy-button"
+        (click)="buyProduct()">Buy</button>
+    </div>
+
+    <div>
+      <span
+        *ngIf="change !== 0"
+        class="money-text"
+        style="float: right;">Change: {{change | centsToEuro }}</span>
+    </div>
+  </div>
+
+  <div>
+    <div
+      class="container"
+      style="display: flex; flex-direction: column; align-items: center;max-width: 200px; margin: 0 26px 0 12px">
+      <p class="text-center">--- Insert coin ---</p>
+      <div class="row justify-content-center g-3" style="margin-bottom: 16px;">
+        <div class="col-4" *ngFor="let c of coins">
+          <span
+            class="coin"
+            (click)="insertCoin(c); change = 0; errorMessage = ''">{{ c | centsToEuro}}</span>
+        </div>
+      </div>
+      <p class="text-center">Credit: <span class="money-text">{{ credit | centsToEuro }}</span></p>
+      <button
+        class="btn btn-light"
+        style="border-radius: 0;"
+        (click)="returnChange()">Return change</button>
+
+    </div>
+    <div
+      *ngIf="errorMessage"
+      (click)="errorMessage = ''"
+      class="alert alert-danger"
+      role="alert"
+      style="margin: 20px; user-select: none;">
+      <span>{{ errorMessage }}</span>
+    </div>
+  </div>
+</div>
+
+

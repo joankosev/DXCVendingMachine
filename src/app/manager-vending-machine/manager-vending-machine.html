@@ -1,0 +1,111 @@
+<div style="display: flex; flex-wrap: wrap;">
+  <div style="display: flex; align-items: flex-start;">
+    <app-vending-machine></app-vending-machine>
+  </div>
+
+  <div style="margin-left: 12px; display: flex; margin-left: 12px; flex-direction: column; align-items: flex-start;">
+    <p style="text-align: center;">--- Manage ---</p>
+    <div>
+      <form
+        (ngSubmit)="
+          submitAddProductForm(
+            createId.valueAsNumber,
+            createName.value,
+            createPrice.value,
+            createQuantity.valueAsNumber
+          );
+          createId.value = '';
+          createName.value = '';
+          createPrice.value = '';
+          createQuantity.value = '';
+        ">
+        <input
+          #createId
+          type="number"
+          placeholder="ID"
+          required
+        />
+        <input
+          #createName
+          type="text"
+          placeholder="Name"
+          required
+        />
+        <input
+          #createPrice
+          type="text"
+          placeholder="Price(€)"
+          required
+        />
+        <input
+          #createQuantity
+          type="number"
+          placeholder="Quantity"
+          required
+        />
+        <button class="btn btn-light" type="submit">Create</button>
+      </form>
+
+      <form
+        (ngSubmit)="
+          submitUpdateProductForm(
+            updateId.valueAsNumber,
+            updateName.value,
+            updatePrice.value,
+            updateQuantity.valueAsNumber
+          );
+          updateId.value = '';
+          updateName.value = '';
+          updatePrice.value = '';
+          updateQuantity.value = '';
+        ">
+        <input
+          #updateId
+          type="number"
+          placeholder="ID"
+          required
+        />
+        <input
+          #updateName
+          type="text"
+          placeholder="Name"
+          required
+        />
+        <input
+          #updatePrice
+          type="text"
+          placeholder="Price(€)"
+          required
+        />
+        <input
+          #updateQuantity
+          type="number"
+          placeholder="Quantity"
+          required
+        />
+        <button class="btn btn-light" type="submit">Update</button>
+      </form>
+
+      <form (ngSubmit)="
+        submitDeleteForm(deleteId.valueAsNumber); deleteId.value = ''
+        ">
+        <input
+          #deleteId
+          type="number"
+          placeholder="ID"
+          required
+        />
+        <button class="btn btn-light" type="submit">Delete</button>
+      </form>
+    </div>
+
+    <div
+      *ngIf="errorMessage"
+      (click)="errorMessage = ''"
+      class="alert alert-danger"
+      role="alert"
+      style="user-select: none;">
+      <span>{{ errorMessage }}</span>
+    </div>
+  </div>
+</div>

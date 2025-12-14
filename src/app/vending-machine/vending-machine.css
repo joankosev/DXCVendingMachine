@@ -1,0 +1,26 @@
+#vending-items-list .col-4 {
+  text-align: center;
+  user-select: none;
+  padding-bottom: 20px;
+}
+
+.money-text {
+  font-weight: bold;
+}
+
+.coin {
+  border: 1px solid black;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+#buy-button {
+  border-radius: 0;
+  border: 1px solid #d8d8d8;
+  border-left: 0;
+}

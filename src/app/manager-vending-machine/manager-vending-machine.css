@@ -1,0 +1,22 @@
+#manage-button {
+  border-radius: 0;
+  width: 100px;
+  height: 70px;
+  margin-bottom: 12px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+form button {
+  border-radius: 0;
+}
+
+form input {
+  border: 1px solid #dbdbdb;
+  margin-bottom: 6px;
+}
